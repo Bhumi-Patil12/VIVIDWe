@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ChooseRole from "./pages/ChooseRole";
+import CreatorProfile from "./pages/CreatorProfile";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
 
         <Route path="/choose-role" element={<ChooseRole />} />
+
+        <Route path="/creator-profile" element={<CreatorProfile />} />
 
       </Routes>
 

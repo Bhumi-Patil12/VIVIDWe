@@ -69,15 +69,18 @@ export default function ChooseRole() {
 
           </ul>
 
-          <Link to="/signup">
+         <Link
+  to="/signup"
+  onClick={() => localStorage.setItem("role", "creator")}
+>
 
-            <button className="w-full mt-auto bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition">
+  <button className="w-full mt-auto bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition">
 
-              Continue as Creator
+    Continue as Creator
 
-            </button>
+  </button>
 
-          </Link>
+</Link>
 
         </div>
 
