@@ -4,7 +4,7 @@ import {
   SignedIn,
   SignedOut,
   UserButton
-} from "@clerk/clerk-react";
+} from "../auth";
 
 export default function Home() {
   return (

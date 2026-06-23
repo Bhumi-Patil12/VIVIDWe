@@ -1,4 +1,8 @@
 {
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "@clerk/express": "^2.1.23",
     "cors": "^2.8.6",

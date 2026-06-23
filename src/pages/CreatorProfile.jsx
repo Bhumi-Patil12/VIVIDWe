@@ -1,4 +1,4 @@
-import { useUser, useSession } from "@clerk/clerk-react"; 
+import { useUser, useSession } from "../auth";
 import { useState, useEffect } from "react";
 
 export default function CreatorProfile() {

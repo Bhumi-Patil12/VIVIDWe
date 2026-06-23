@@ -27,6 +27,8 @@
   },
   "scripts": {
     "dev": "vite",
+    "backend": "node backend/server.js",
+    "start": "npx concurrently \"npm run dev\" \"npm run backend\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -40,5 +42,8 @@
   "bugs": {
     "url": "https://github.com/Bhumi-Patil12/VIVIDWe/issues"
   },
-  "homepage": "https://github.com/Bhumi-Patil12/VIVIDWe#readme"
+  "homepage": "https://github.com/Bhumi-Patil12/VIVIDWe#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
 }
