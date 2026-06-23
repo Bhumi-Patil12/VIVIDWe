@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ChooseRole from "./pages/ChooseRole";
 import CreatorProfile from "./pages/CreatorProfile";
+import Reels from "./pages/Reels";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Route path="/choose-role" element={<ChooseRole />} />
 
         <Route path="/creator-profile" element={<CreatorProfile />} />
+
+        <Route path="/reels" element={<Reels />} />
 
       </Routes>
 

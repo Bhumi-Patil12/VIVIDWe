@@ -40,57 +40,43 @@ export default function Home() {
 
       </nav>
 
-      <section className="text-center py-24 px-6">
+      <section className="relative overflow-hidden bg-slate-950 text-slate-100">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.3),_transparent_40%),radial-gradient(circle_at_bottom_right,_rgba(168,85,247,0.25),_transparent_35%)]" />
+        <div className="relative mx-auto max-w-6xl px-6 py-24 text-center">
+          <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-cyan-200 backdrop-blur-sm">
+            <span className="h-2 w-2 rounded-full bg-cyan-400" /> AI Verified Platform
+          </p>
 
-        <p className="bg-blue-100 text-blue-600 inline-block px-4 py-2 rounded-full mb-6">
-          AI Verified Platform
-        </p>
+          <h1 className="mt-8 text-5xl font-bold tracking-tight text-white md:text-7xl">
+            Where Creators Meet
+            <span className="text-cyan-300 block">Opportunity &amp; Growth</span>
+          </h1>
 
-        <h1 className="text-6xl font-bold leading-tight">
+          <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
+            Connect creators, recruiters, and viewers through reels, profiles, and shared opportunities in a modern creative marketplace.
+          </p>
 
-          Where Creators Meet
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link to="/signup?role=creator" className="inline-flex rounded-full bg-cyan-400 px-8 py-4 text-sm font-semibold text-slate-950 shadow-xl shadow-cyan-500/20 transition hover:bg-cyan-300">
+              Join as Creator
+            </Link>
+            <Link to="/signup?role=recruiter" className="inline-flex rounded-full border border-cyan-400 bg-slate-950/90 px-8 py-4 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300 hover:text-white">
+              Hire Talent
+            </Link>
+            <Link to="/signup?role=viewer" className="inline-flex rounded-full border border-slate-700 bg-slate-950/70 px-8 py-4 text-sm font-semibold text-slate-100 transition hover:border-slate-400">
+              Browse Creators
+            </Link>
+          </div>
 
-          <span className="text-blue-600 block">
-            Opportunities
-          </span>
-
-        </h1>
-
-        <p className="text-gray-500 mt-8 text-xl max-w-2xl mx-auto">
-
-          Connect Creators, Recruiters and Viewers
-          in one powerful ecosystem.
-
-        </p>
-
-       <div className="flex justify-center gap-4 mt-10 flex-wrap">
-
-<Link to="/signup?role=creator">
-
-  <button className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition">
-    Join as Creator
-  </button>
-
-</Link>
-
- <Link to="/signup?role=recruiter">
-
-  <button className="border px-6 py-3 rounded-xl hover:bg-gray-100 transition">
-    Hire Talent
-  </button>
-
-</Link>
-
-  <Link to="/signup?role=viewer">
-
-  <button className="border px-6 py-3 rounded-xl hover:bg-gray-100 transition">
-    Browse Creators
-  </button>
-
-</Link>
-
-</div>
-
+          <div className="mt-14 flex flex-col gap-6 sm:flex-row sm:justify-center">
+            <button onClick={() => document.getElementById("hero-cta")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-semibold text-slate-950 transition hover:bg-slate-100">
+              Ready to join?
+            </button>
+            <Link to="/reels" className="inline-flex items-center justify-center rounded-full border border-slate-700 px-8 py-4 text-sm font-semibold text-slate-100 transition hover:bg-slate-800">
+              Browse Reels
+            </Link>
+          </div>
+        </div>
       </section>
       {/* FEATURES SECTION */}
 
@@ -170,84 +156,49 @@ export default function Home() {
 
 </section>
 
-{/* CTA SECTION */}
+{/* STARTER CTA SECTION */}
 
-<section className="px-10 py-24">
-
-  <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-16 text-center text-white">
-
-    <h1 className="text-5xl font-bold">
-      Ready to join?
-    </h1>
-
-    <p className="text-xl mt-6 text-blue-100 max-w-2xl mx-auto leading-8">
-
-Join thousands of creators and companies already on VIVIDWe.
-
+<section id="hero-cta" className="px-6 py-24 sm:px-10">
+  <div className="rounded-[36px] bg-slate-950/95 p-12 text-center shadow-2xl shadow-slate-950/20 backdrop-blur-xl">
+    <p className="text-sm uppercase tracking-[0.32em] text-cyan-300">Get started</p>
+    <h1 className="mt-5 text-5xl font-bold text-white sm:text-6xl">Ready to join the VIVIDWe creator economy?</h1>
+    <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
+      Create your profile, browse creator reels, or hire talent with AI-verified trust signals.
     </p>
-
-    <div className="flex justify-center gap-5 mt-10 flex-wrap">
-
-      <Link to="/choose-role">
-
-  <button className="bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold hover:bg-gray-100 transition">
-    Get Started Free
-  </button>
-
-</Link>
-
+    <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <Link to="/signup?role=creator" className="inline-flex rounded-full bg-cyan-400 px-8 py-4 text-sm font-semibold text-slate-950 hover:bg-cyan-300 transition">
+        Join as Creator
+      </Link>
+      <Link to="/signup?role=recruiter" className="inline-flex rounded-full border border-cyan-400 px-8 py-4 text-sm font-semibold text-cyan-100 hover:bg-slate-800 transition">
+        Hire Talent
+      </Link>
+      <Link to="/reels" className="inline-flex rounded-full border border-slate-700 px-8 py-4 text-sm font-semibold text-slate-100 hover:bg-slate-800 transition">
+        Browse Reels
+      </Link>
     </div>
-
   </div>
-
 </section>
 
 {/* FOOTER */}
 
-<footer className="border-t px-10 py-10">
-
-  <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-
+<footer className="border-t border-slate-800 bg-slate-950 px-6 py-10 text-slate-400 sm:px-10">
+  <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
     <div>
-
-      <h1 className="text-3xl font-bold text-blue-600">
-        VIVIDWe
-      </h1>
-
-      <p className="text-gray-500 mt-3">
-        Connecting creators with opportunities.
+      <h1 className="text-3xl font-bold text-cyan-300">VIVIDWe</h1>
+      <p className="mt-3 max-w-md text-sm text-slate-500">
+        A creative marketplace for reels, profiles, and verified opportunities.
       </p>
-
     </div>
-
-    <div className="flex gap-8 text-gray-600 font-medium">
-
-      <a href="#" className="hover:text-blue-600 transition">
-        Home
-      </a>
-
-      <a href="#" className="hover:text-blue-600 transition">
-        Features
-      </a>
-
-      <a href="#" className="hover:text-blue-600 transition">
-        Creators
-      </a>
-
-      <a href="#" className="hover:text-blue-600 transition">
-        Contact
-      </a>
-
+    <div className="flex flex-wrap gap-6 text-sm text-slate-500">
+      <Link to="/" className="hover:text-white transition">Home</Link>
+      <a href="#hero-cta" className="hover:text-white transition">Join</a>
+      <Link to="/reels" className="hover:text-white transition">Reels</Link>
+      <Link to="/choose-role" className="hover:text-white transition">Choose Role</Link>
     </div>
-
   </div>
-
-  <div className="border-t mt-8 pt-6 text-center text-gray-500">
-
+  <div className="mt-8 border-t border-slate-800 pt-6 text-center text-sm text-slate-500">
     © 2025 VIVIDWe. All rights reserved.
-
   </div>
-
 </footer>
 
     </div>
