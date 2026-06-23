@@ -65,7 +65,7 @@ export default function Home() {
 
        <div className="flex justify-center gap-4 mt-10 flex-wrap">
 
-<Link to="/choose-role">
+<Link to="/signup?role=creator">
 
   <button className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition">
     Join as Creator
@@ -73,7 +73,7 @@ export default function Home() {
 
 </Link>
 
- <Link to="/choose-role">
+ <Link to="/signup?role=recruiter">
 
   <button className="border px-6 py-3 rounded-xl hover:bg-gray-100 transition">
     Hire Talent
@@ -81,7 +81,7 @@ export default function Home() {
 
 </Link>
 
-  <Link to="/choose-role">
+  <Link to="/signup?role=viewer">
 
   <button className="border px-6 py-3 rounded-xl hover:bg-gray-100 transition">
     Browse Creators

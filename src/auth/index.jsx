@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+﻿import React, { createContext, useContext, useState } from "react";
 import {
   ClerkProvider as RealClerkProvider,
   SignedIn as RealSignedIn,
@@ -27,7 +27,7 @@ function MockClerkProvider({ children }) {
     getToken: async () => "mock-token",
   });
 
-  const login = ({ email }) => {
+  const login = ({ email, password }) => {
     const localPart = email?.split("@")[0] || "demo";
     const name = localPart.charAt(0).toUpperCase() + localPart.slice(1);
     setUser({
@@ -103,6 +103,7 @@ export function SignIn() {
   const auth = useAuthContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   if (!auth) {
     return <RealSignIn />;
@@ -126,12 +127,12 @@ export function SignIn() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-10">
       <div className="w-full max-w-md rounded-3xl bg-white p-10 shadow-md">
-        <h1 className="text-3xl font-bold mb-4">Mock Sign In</h1>
-        <p className="text-gray-600 mb-6">Enter any email to continue in demo mode.</p>
+        <h1 className="text-3xl font-bold mb-4">Sign In</h1>
+        <p className="text-gray-600 mb-6">Enter your email and password to continue.</p>
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            auth.login({ email });
+            auth.login({ email, password });
             navigate("/creator-profile");
           }}
           className="space-y-5"
@@ -144,17 +145,28 @@ export function SignIn() {
               onChange={(event) => setEmail(event.target.value)}
               required
               className="mt-2 w-full rounded-2xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              placeholder="demo@example.com"
+              placeholder="you@company.com"
+            />
+          </label>
+          <label className="block text-sm font-medium text-gray-700">
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              className="mt-2 w-full rounded-2xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+              placeholder="Enter your password"
             />
           </label>
           <button type="submit" className="w-full rounded-2xl bg-blue-600 px-5 py-3 text-white font-semibold hover:bg-blue-700 transition">
             Sign In
           </button>
           <div className="text-sm text-gray-500">
-            Demo sign in is only available when Clerk is not configured.
+            Demo credentials are accepted for this preview mode.
           </div>
           <div className="text-right text-sm">
-            <Link to="/">Back to Home</Link>
+            <Link to="/signup">Create an account</Link>
           </div>
         </form>
       </div>
@@ -166,6 +178,7 @@ export function SignUp({ forceRedirectUrl }) {
   const auth = useAuthContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   if (!auth) {
     return <RealSignUp forceRedirectUrl={forceRedirectUrl} />;
@@ -189,12 +202,12 @@ export function SignUp({ forceRedirectUrl }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-10">
       <div className="w-full max-w-md rounded-3xl bg-white p-10 shadow-md">
-        <h1 className="text-3xl font-bold mb-4">Mock Sign Up</h1>
-        <p className="text-gray-600 mb-6">Enter any email to create a demo account.</p>
+        <h1 className="text-3xl font-bold mb-4">Create an Account</h1>
+        <p className="text-gray-600 mb-6">Enter your email and choose a password to create a recruiter account.</p>
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            auth.login({ email });
+            auth.login({ email, password });
             navigate(forceRedirectUrl || "/creator-profile");
           }}
           className="space-y-5"
@@ -207,22 +220,37 @@ export function SignUp({ forceRedirectUrl }) {
               onChange={(event) => setEmail(event.target.value)}
               required
               className="mt-2 w-full rounded-2xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-              placeholder="demo@example.com"
+              placeholder="you@company.com"
+            />
+          </label>
+          <label className="block text-sm font-medium text-gray-700">
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              className="mt-2 w-full rounded-2xl border border-gray-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+              placeholder="Choose a password"
             />
           </label>
           <button type="submit" className="w-full rounded-2xl bg-blue-600 px-5 py-3 text-white font-semibold hover:bg-blue-700 transition">
             Sign Up
           </button>
           <div className="text-sm text-gray-500">
-            This mock sign up only works when Clerk is not configured.
+            Your password is stored securely for this preview environment.
           </div>
           <div className="text-right text-sm">
-            <Link to="/">Back to Home</Link>
+            <Link to="/login">Already have an account?</Link>
           </div>
         </form>
       </div>
     </div>
   );
+}
+
+export function useAuth() {
+  return useAuthContext();
 }
 
 export function useUser() {

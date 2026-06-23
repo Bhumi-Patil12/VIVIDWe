@@ -69,10 +69,7 @@ export default function ChooseRole() {
 
           </ul>
 
-         <Link
-  to="/signup"
-  onClick={() => localStorage.setItem("role", "creator")}
->
+         <Link to="/signup?role=creator">
 
   <button className="w-full mt-auto bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition">
 
@@ -113,7 +110,7 @@ export default function ChooseRole() {
 
           </ul>
 
-          <Link to="/signup">
+          <Link to="/signup?role=recruiter">
 
             <button className="w-full mt-auto bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition">
 
@@ -154,7 +151,7 @@ export default function ChooseRole() {
 
           </ul>
 
-          <Link to="/signup">
+          <Link to="/signup?role=viewer">
 
             <button className="w-full mt-auto bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition">
 
