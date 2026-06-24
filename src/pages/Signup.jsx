@@ -1,6 +1,7 @@
 ﻿import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SignUp, useAuth } from "../auth";
+// इसे खोजो और ऐसे बदल दो 👇
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const websitePattern = /^(https?:\/\/)?([\w.-]+)\.([a-z]{2,})(\/\S*)?$/i;
@@ -9,10 +10,17 @@ export default function Signup() {
   const location = useLocation();
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
-  const role = params.get("role") || "recruiter";
+  const role = params.get("role") || "creator";
   const auth = useAuth();
   const isRecruiter = role === "recruiter";
   const roleLabel = isRecruiter ? "Recruiter" : role === "viewer" ? "Viewer" : "Creator";
+
+  // डायनामिक प्रोफाइल पाथ तय करने के लिए
+  const targetProfilePath = isRecruiter 
+    ? "/recruiter-profile" 
+    : role === "viewer" 
+    ? "/viewer-profile" 
+    : "/creator-profile";
 
   const [companyName, setCompanyName] = useState(localStorage.getItem("companyName") || "");
   const [companyEmail, setCompanyEmail] = useState(localStorage.getItem("companyEmail") || "");
@@ -67,11 +75,22 @@ export default function Signup() {
     }
 
     auth.login({ email, password });
-    navigate(`/creator-profile?role=${role}`);
+
+    // अब जो रोल ऊपर से आएगा, यूजर सिर्फ उसी पेज पर जाएगा!
+    if (role === "recruiter") {
+      navigate("/recruiter-profile");
+    } else if (role === "viewer") {
+      navigate("/viewer-profile");
+    } else {
+      navigate("/creator-profile");
+    }
   };
 
+
   if (!auth) {
-    return <SignUp forceRedirectUrl={`/creator-profile?role=${role}`} />;
+    // फिक्स: Clerk के रीडायरेक्शन यूआरएल को भी डायनामिक सही प्रोफाइल पाथ दिया 👇
+    return <SignUp forceRedirectUrl={targetProfilePath} />;
+
   }
 
   if (auth.signedIn) {
@@ -80,12 +99,12 @@ export default function Signup() {
         <div className="w-full max-w-xl rounded-[32px] border border-slate-200 bg-white p-10 shadow-xl">
           <h2 className="text-3xl font-semibold text-slate-900 mb-4">You are already logged in</h2>
           <p className="text-slate-600 mb-6">
-            You are already signed in. Go to your profile to continue building your recruiter account.
+            You are already signed in. Go to your profile to continue building your account.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               type="button"
-              onClick={() => navigate(`/creator-profile?role=${role}`)}
+              onClick={() => navigate(targetProfilePath)}
               className="w-full rounded-2xl bg-blue-600 px-5 py-3 text-white font-medium hover:bg-blue-700 transition"
             >
               Go to Profile
